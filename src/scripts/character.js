@@ -10,16 +10,16 @@ class Character {
     this.falling = false;
     this.position = {
       x: 300,
-      y: this.gameHeight - this.height,
+      y: this.gameHeight - this.height - 20,
     };
     this.velocity = {
-      x: 5,
-      y: 10,
+      x: 0,
+      y: 0,
     };
     this.constants = {
       gravity: 1,
       friction: 0.9,
-    }
+    };
   }
 
   drawChar(ctx) {
