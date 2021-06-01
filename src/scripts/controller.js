@@ -3,19 +3,20 @@ class Controller {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case 'ArrowLeft':
-          char.direction == "left";
-          char.move(char.direction);
+          char.direction = "left";
+          char.move();
           break;
         case 'ArrowRight':
-          char.direction == "right";
-          char.move(char.direction);
+          char.direction = "right";
+          char.move();
           break;
         case 'ArrowDown':
-          char.crouching == true;
+          char.crouching = true;
           char.crouch();   
           break;
         case 'Space':
           if (!char.jumping) {
+            char.jumping = true
             char.jump();
           }
           break;
@@ -24,14 +25,15 @@ class Controller {
     document.addEventListener('keyup', (event) => {
       switch (event.code) {
         case 'ArrowLeft':
-          char.direction == "left";
+          char.direction = "left";
           char.stop();
           break;
         case 'ArrowRight':
-          char.direction == "right";
+          char.direction = "right";
+          char.stop();
           break;
         case 'ArrowDown':
-          char.crouching == false;
+          char.crouching = false;
           break;
         case 'Space':
           char.stop();

@@ -12,9 +12,19 @@ class Character {
       x: 100,
       y: 100,
     };
+    this.velocity = {
+      x: 5,
+      y: 10,
+    };
   }
 
-  
+  move() {
+    if (this.direction == "left") {
+      
+    } else {
+
+    }
+  }
 
 
 }

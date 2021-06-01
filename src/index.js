@@ -13,6 +13,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let char = new Character(ctx);
   new Controller(char)
-  let bg = new Background(ctx)
-  // game.start();
+  let bg = new Background(ctx);
 })
