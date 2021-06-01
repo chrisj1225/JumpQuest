@@ -11,7 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const GAME_WIDTH = ctx.canvas.width;
   const GAME_HEIGHT = ctx.canvas.height;
 
-  let char = new Character(ctx);
+  let char = new Character(GAME_WIDTH, GAME_HEIGHT);
   new Controller(char)
-  let bg = new Background(ctx);
+  let bg = new Background(GAME_WIDTH, GAME_HEIGHT);
+
+  function startGame() {
+    bg.animate(ctx);
+    char.drawChar(ctx);
+  }
+
+  function gameLoop() {
+
+  }
+
 })
