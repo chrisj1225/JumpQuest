@@ -1,11 +1,14 @@
 class JumpQuest {
-  constructor(ctx) {
-    this.ctx = ctx;
+  constructor(canvas) {
+    
+  }
 
+  start(ctx) {
 
   }
 
-  animate(ctx) {
+  loop() {
+
 
   }
 }

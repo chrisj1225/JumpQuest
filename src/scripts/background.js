@@ -1,7 +1,7 @@
 class Background {
-  constructor(cWidth, cHeight) {
-    this.width = cWidth;
-    this.height = cHeight;
+  constructor(gameWidth, gameHeight) {
+    this.width = gameWidth;
+    this.height = gameHeight;
   }
 
   drawBackground(ctx) {
