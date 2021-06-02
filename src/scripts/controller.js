@@ -25,7 +25,7 @@ class Controller {
           // this.keys[event.code] = true
           if (!char.jumping) {
             char.jumping = true;
-            char.jump(this.keys);
+            char.jump();
           }
           break;
       }

@@ -6,7 +6,10 @@ class Background {
 
   drawBackground(ctx) {
     ctx.fillStyle = "grey";
-    ctx.fillRect(0, 0, this.width, this.height);
+    ctx.fillRect(0, 0, this.width, this.height - 20);
+    ctx.fill();
+    ctx.fillStyle = "brown";
+    ctx.fillRect(0, this.height - 20, this.width, this.height);
     ctx.fill();
   }
 

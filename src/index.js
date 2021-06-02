@@ -18,8 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let frames = 0;
   // platform = [posX, posY, width]
   let platforms = {
-    1: [500, 4910, 100],
-    2: [650, 4890, 100]
+    1: [200, 4910, 100],
+    2: [350, 4870, 100],
+    3: [500, 4830, 100],
+    4: [650, 4790, 100],
+    5: [800, 4750, 100],
   };
 
   document.addEventListener("keydown", event => {

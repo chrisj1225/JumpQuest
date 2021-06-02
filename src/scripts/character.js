@@ -5,7 +5,7 @@ class Character {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
     this.width = 64;
-    this.height = 64;
+    this.height = 40;
     this.direction = "right";
     this.moveSpeed = .75;
     this.jumpHeight = -12;
@@ -13,7 +13,7 @@ class Character {
     this.jumping = false;
     this.falling = false;
     this.position = {
-      x: 300,
+      x: 100,
       y: this.gameHeight - this.height - 20,
     };
     this.velocity = {
@@ -28,40 +28,48 @@ class Character {
   }
 
   drawChar(ctx, frames) {
+    // testing character boundaries
+    // ctx.strokeStyle = "green";
+    // ctx.moveTo(this.position.x, this.position.y);
+    // ctx.lineTo(this.position.x, 0);
+    // ctx.moveTo(this.position.x+this.width, this.position.y);
+    // ctx.lineTo(this.position.x+this.width, 0);
+    // ctx.stroke();
+
     if (this.direction == 'left') {
       if (this.jumping) { 
-        ctx.drawImage(finnLeft, 448, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        ctx.drawImage(finnLeft, 448, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
       } else if (this.moving) {
         if (frames < 20) {
-          ctx.drawImage(finnLeft, 544, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+          ctx.drawImage(finnLeft, 544, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         } else if (frames > 20 && frames < 40) { 
-          ctx.drawImage(finnLeft, 512, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+          ctx.drawImage(finnLeft, 512, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         } else {
-          ctx.drawImage(finnLeft, 480, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+          ctx.drawImage(finnLeft, 480, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         };
       } else {
         if (frames < 40) {
-          ctx.drawImage(finnLeft, 864, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+          ctx.drawImage(finnLeft, 864, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         } else {
-          ctx.drawImage(finnLeft, 800, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+          ctx.drawImage(finnLeft, 800, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         };
       };
     } else if (this.direction == 'right') {
       if (this.jumping) {
-        ctx.drawImage(finnRight, 480, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        ctx.drawImage(finnRight, 480, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
       } else if (this.moving) {
         if (frames < 20) {
-          ctx.drawImage(finnRight, 320, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+          ctx.drawImage(finnRight, 320, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         } else if (frames > 20 && frames < 40) { 
-          ctx.drawImage(finnRight, 384, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+          ctx.drawImage(finnRight, 384, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         } else {
-          ctx.drawImage(finnRight, 416, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+          ctx.drawImage(finnRight, 416, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         };
       } else {
         if (frames < 40) {
-          ctx.drawImage(finnRight, 0, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+          ctx.drawImage(finnRight, 0, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         } else {
-          ctx.drawImage(finnRight, 64, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+          ctx.drawImage(finnRight, 64, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         }
       }
     }
@@ -83,11 +91,11 @@ class Character {
   }
 
   crouch() {
-    this.height = 32;
+    this.height = 20;
   }
 
   uncrouch() {
-    this.height = 64;
+    this.height = 40;
   }
 
   update(platforms) {
@@ -120,6 +128,7 @@ class Character {
       this.position.x = this.gameWidth - this.width;
     }
 
+    // check if char is standing on any platform
     for (let i=0; i<platforms.length; i++) {
       let platform = platforms[i];
       if (this.onPlatform(this.position, platform)) {
@@ -129,15 +138,6 @@ class Character {
         break;
       }
     }
-    // platforms.forEach(platform => {
-    //   if (this.onPlatform(this.position, platform)) {
-    //     this.jumping = false;
-    //     this.position.y = platform[1]-this.height;
-    //     this.velocity.y = 0;
-    //     break;
-    //   }
-    // })
-
   }
 
   onPlatform(charPos, platform) {
@@ -147,9 +147,10 @@ class Character {
     // }
     // platform = [posX, posY, width]
 
-    if ((charPos.x >= platform[0] && 
-      charPos.x <= (platform[0]+platform[2])) && 
-      (charPos.y >= platform[1]-2 || charPos.y <= platform[1]+2)) {
+    if (((charPos.x + this.width -15) >= platform[0]) &&
+    ((charPos.x+15) <= (platform[0]+platform[2])) &&
+    ((charPos.y + 40) <= platform[1]) &&
+    ((charPos.y + 40) >= platform[1]-2)){
         return true
       }
   }
