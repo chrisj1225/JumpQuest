@@ -29,17 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function gameLoop() {
-    // startGame();
-    // if (controller.left) {
-    //   char.velocity.x -= 0.5;
-    // }
-    // if (controller.right) {
-    //   char.velocity.x += 0.5;
-    // }
-    // if (controller.jump && !char.jumping) {
-    //   char.velocity.y -= 20;
-    // }
-
     // ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     bg.drawBackground(ctx);
     char.update();

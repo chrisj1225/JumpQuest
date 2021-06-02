@@ -5,8 +5,8 @@ class Character {
     this.width = 50;
     this.height = 80;
     this.direction = "right";
-    this.moveSpeed = 2;
-    this.jumpSpeed = -15;
+    this.moveSpeed = 1;
+    this.jumpHeight = -10;
     this.crouching = "false";
     this.jumping = false;
     this.falling = false;
@@ -19,7 +19,7 @@ class Character {
       y: 0,
     };
     this.constants = {
-      gravity: .2,
+      gravity: 0.15,
       friction: 0.9,
     };
   }
@@ -31,22 +31,24 @@ class Character {
     ctx.fill();
   }
 
-  move() {
-    if (this.direction == "left") {
-      this.velocity.x = -this.moveSpeed;
-    } else {
-      this.velocity.x = this.moveSpeed;
+  move(keys) {
+    console.log(keys);
+    if ((this.direction == "left") && (keys['ArrowLeft'])) {
+      this.velocity.x -= this.moveSpeed;
+    } else if ((this.direction == "right") && (keys['ArrowRight'])) {
+      this.velocity.x += this.moveSpeed;
     }
   }
 
   stop() {
     this.velocity.x = 0;
-    this.jumping = false;
+    this.velocity.y = 0;
   }
 
-  jump() {
-    if (this.jumping) {
-      this.velocity.y = this.jumpSpeed
+  jump(keys) {
+    console.log(keys)
+    if (this.jumping && keys['Space']) {
+      this.velocity.y += this.jumpHeight
     }
   }
 
@@ -59,15 +61,22 @@ class Character {
   }
 
   update() {
-    this.velocity.y += this.constants.gravity;
-    this.position.x += this.velocity.x;
+    // if (controller.left || controller.right) {
+    //   this.position.x += this.velocity.x;
+    // }
+    // if (controller.jump && !char.jumping) {
+    //   this.position.y += this.velocity.y;
+    // }
+    
     this.position.y += this.velocity.y;
+    this.position.x += this.velocity.x;
+    this.velocity.y += this.constants.gravity;
     this.velocity.x *= this.constants.friction;
     this.velocity.y *= this.constants.friction;
 
     // if char is falling below floor line, stop falling
     if (this.position.y > this.gameHeight - this.height - 20) {
-      this.jumping = false;
+      this.jumping = false; // char is no longer jumping when landed
       this.position.y = this.gameHeight - this.height - 20;
       this.velocity.y = 0;
     }

@@ -1,35 +1,32 @@
 class Controller {
   constructor(char) {
-    this.left = false;
-    this.right = false;
-    this.down = false;
-    this.jump = false;
+    this.keys = {};
 
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case 'ArrowLeft':
-          this.left = true;
+          this.keys[event.code] = true
           char.direction = "left";
-          char.move();
+          char.move(this.keys);
           console.log(char);
           break;
         case 'ArrowRight':
-          this.right = true;
+          this.keys[event.code] = true
           char.direction = "right";
-          char.move();
+          char.move(this.keys);
           console.log(char);
           break;
         case 'ArrowDown':
-          this.down = true;
+          this.keys[event.code] = true
           char.crouching = true;
           char.crouch();   
           console.log(char);
           break;
         case 'Space':
-          this.jump = true;
+          this.keys[event.code] = true
           if (!char.jumping) {
-            char.jumping = true
-            char.jump();
+            char.jumping = true;
+            char.jump(this.keys);
           }
           break;
       }
@@ -37,23 +34,24 @@ class Controller {
     document.addEventListener('keyup', (event) => {
       switch (event.code) {
         case 'ArrowLeft':
-          this.left = false;
+          this.keys[event.code] = false;
           char.direction = "left";
           char.stop();
           break;
         case 'ArrowRight':
-          this.right = false;
+          this.keys[event.code] = false;
           char.direction = "right";
           char.stop();
           break;
         case 'ArrowDown':
-          this.down = false;
+          this.keys[event.code] = false;
           char.crouching = false;
           char.uncrouch();
           break;
         case 'Space':
-          this.jump = false;
-          char.stop();
+          this.keys[event.code] = false;
+          // char.jumping = false;
+          // char.stop();
           break;
       }
     })
