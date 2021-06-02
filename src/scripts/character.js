@@ -5,7 +5,8 @@ class Character {
     this.width = 50;
     this.height = 80;
     this.direction = "right";
-    this.speed = 5;
+    this.moveSpeed = 2;
+    this.jumpSpeed = -15;
     this.crouching = "false";
     this.jumping = false;
     this.falling = false;
@@ -18,7 +19,7 @@ class Character {
       y: 0,
     };
     this.constants = {
-      gravity: 1,
+      gravity: .2,
       friction: 0.9,
     };
   }
@@ -32,19 +33,20 @@ class Character {
 
   move() {
     if (this.direction == "left") {
-      this.velocity.x = -this.speed;
+      this.velocity.x = -this.moveSpeed;
     } else {
-      this.velocity.x = this.speed;
+      this.velocity.x = this.moveSpeed;
     }
   }
 
   stop() {
     this.velocity.x = 0;
+    this.jumping = false;
   }
 
   jump() {
     if (this.jumping) {
-      this.position.y = this.velocity.y
+      this.velocity.y = this.jumpSpeed
     }
   }
 
@@ -56,7 +58,7 @@ class Character {
     this.height = 80;
   }
 
-  render() {
+  update() {
     this.velocity.y += this.constants.gravity;
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
@@ -71,9 +73,9 @@ class Character {
     }
 
     // if char is going off screen, stop at edge of screen
-    if (this.position.x == 0) {
+    if (this.position.x <= 0) {
       this.position.x = 0;
-    } else if (this.position.x == this.gameWidth) {
+    } else if (this.position.x >= this.gameWidth - this.width) {
       this.position.x = this.gameWidth - this.width;
     }
   }

@@ -1,8 +1,8 @@
+import "./styles/index.scss";
 // import JumpQuest from "./scripts/game";
 import Character from "./scripts/character";
 import Controller from "./scripts/controller";
 import Background from "./scripts/background";
-import "./styles/index.scss";
 console.log("webpack is working properly");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,13 +12,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const GAME_HEIGHT = ctx.canvas.height;
 
   let char = new Character(GAME_WIDTH, GAME_HEIGHT);
-  let controller = new Controller(char)
+  new Controller(char)
   let bg = new Background(GAME_WIDTH, GAME_HEIGHT);
 
-  // function startGame() {
-    bg.drawBackground(ctx);
-    char.drawChar(ctx);
-  // }
+  document.addEventListener("keydown", event => {
+    switch(event.code) {
+      case 'Enter':
+        startGame();
+        break
+    }
+  })
+
+  function startGame() {
+    gameLoop();
+    requestAnimationFrame(gameLoop);
+  }
 
   function gameLoop() {
     // startGame();
@@ -32,30 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
     //   char.velocity.y -= 20;
     // }
 
-    // moved code below to character.js
-    // char.velocity.y += char.constants.gravity;
-    // char.position.x += char.velocity.x;
-    // char.position.y += char.velocity.y;
-    // char.velocity.x *= char.constants.friction;
-    // char.velocity.y *= char.constants.friction;
-
-    // // if char is falling below floor line, stop falling
-    // if (char.position.y > GAME_HEIGHT - char.height - 20) {
-    //   char.jumping = false;
-    //   char.position.y = GAME_HEIGHT - char.height - 20;
-    //   char.velocity.y = 0;
-    // }
-
-    // // if char is going off screen, stop at edge of screen
-    // if (char.position.x == 0) {
-    //   char.position.x = 0;
-    // } else if (char.position.x == GAME_WIDTH) {
-    //   char.position.x = GAME_WIDTH - char.width;
-    // }
-
-    char.render();
+    // ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    bg.drawBackground(ctx);
+    char.update();
+    char.drawChar(ctx);
     requestAnimationFrame(gameLoop);
   }
 
-  requestAnimationFrame(gameLoop);
 })

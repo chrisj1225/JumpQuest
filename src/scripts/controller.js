@@ -11,16 +11,19 @@ class Controller {
           this.left = true;
           char.direction = "left";
           char.move();
+          console.log(char);
           break;
         case 'ArrowRight':
           this.right = true;
           char.direction = "right";
           char.move();
+          console.log(char);
           break;
         case 'ArrowDown':
           this.down = true;
           char.crouching = true;
           char.crouch();   
+          console.log(char);
           break;
         case 'Space':
           this.jump = true;
