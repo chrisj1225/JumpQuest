@@ -46,6 +46,7 @@ class Controller {
         case 'ArrowDown':
           this.down = false;
           char.crouching = false;
+          char.uncrouch();
           break;
         case 'Space':
           this.jump = false;
