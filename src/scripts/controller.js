@@ -7,23 +7,20 @@ class Controller {
         case 'ArrowLeft':
           this.keys[event.code] = true
           char.direction = "left";
-          char.move(this.keys);
-          console.log(char);
+          char.keys = this.keys;
           break;
         case 'ArrowRight':
           this.keys[event.code] = true
           char.direction = "right";
-          char.move(this.keys);
-          console.log(char);
+          char.updateKeys(this.keys);
           break;
         case 'ArrowDown':
-          this.keys[event.code] = true
+          // this.keys[event.code] = true
           char.crouching = true;
           char.crouch();   
-          console.log(char);
           break;
         case 'Space':
-          this.keys[event.code] = true
+          // this.keys[event.code] = true
           if (!char.jumping) {
             char.jumping = true;
             char.jump(this.keys);
@@ -35,23 +32,21 @@ class Controller {
       switch (event.code) {
         case 'ArrowLeft':
           this.keys[event.code] = false;
-          char.direction = "left";
+          char.keys = this.keys;
           char.stop();
           break;
         case 'ArrowRight':
           this.keys[event.code] = false;
-          char.direction = "right";
+          char.keys = this.keys;
           char.stop();
           break;
         case 'ArrowDown':
-          this.keys[event.code] = false;
+          // this.keys[event.code] = false;
           char.crouching = false;
           char.uncrouch();
           break;
         case 'Space':
-          this.keys[event.code] = false;
-          // char.jumping = false;
-          // char.stop();
+          // this.keys[event.code] = false;
           break;
       }
     })

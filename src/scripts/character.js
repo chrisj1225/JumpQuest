@@ -5,8 +5,8 @@ class Character {
     this.width = 50;
     this.height = 80;
     this.direction = "right";
-    this.moveSpeed = 1;
-    this.jumpHeight = -10;
+    this.moveSpeed = .75;
+    this.jumpHeight = -12;
     this.crouching = "false";
     this.jumping = false;
     this.falling = false;
@@ -22,6 +22,7 @@ class Character {
       gravity: 0.15,
       friction: 0.9,
     };
+    this.keys = {};
   }
 
   drawChar(ctx) {
@@ -31,13 +32,8 @@ class Character {
     ctx.fill();
   }
 
-  move(keys) {
-    console.log(keys);
-    if ((this.direction == "left") && (keys['ArrowLeft'])) {
-      this.velocity.x -= this.moveSpeed;
-    } else if ((this.direction == "right") && (keys['ArrowRight'])) {
-      this.velocity.x += this.moveSpeed;
-    }
+  updateKeys(keys) {
+    this.keys = keys;
   }
 
   stop() {
@@ -45,10 +41,10 @@ class Character {
     this.velocity.y = 0;
   }
 
-  jump(keys) {
-    console.log(keys)
-    if (this.jumping && keys['Space']) {
-      this.velocity.y += this.jumpHeight
+  jump() {
+    // console.log(keys)
+    if (this.jumping) {
+      this.velocity.y = this.jumpHeight
     }
   }
 
@@ -61,12 +57,12 @@ class Character {
   }
 
   update() {
-    // if (controller.left || controller.right) {
-    //   this.position.x += this.velocity.x;
-    // }
-    // if (controller.jump && !char.jumping) {
-    //   this.position.y += this.velocity.y;
-    // }
+    // check current key presses
+    if (this.keys['ArrowLeft']) {
+      this.velocity.x = -this.moveSpeed;
+    } else if (this.keys['ArrowRight']) {
+      this.velocity.x = this.moveSpeed;
+    }
     
     this.position.y += this.velocity.y;
     this.position.x += this.velocity.x;
