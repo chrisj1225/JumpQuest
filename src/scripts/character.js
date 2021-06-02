@@ -65,11 +65,6 @@ class Character {
         }
       }
     }
-
-    // ctx.fillStyle = "white"
-    // ctx.beginPath();
-    // ctx.rect(this.position.x, this.position.y, this.width, this.height);
-    // ctx.fill();
   }
 
   updateKeys(keys) {
@@ -95,7 +90,7 @@ class Character {
     this.height = 64;
   }
 
-  update() {
+  update(platforms) {
     // check current key presses
     if (this.keys['ArrowLeft']) {
       this.velocity.x = -this.moveSpeed;
@@ -124,6 +119,39 @@ class Character {
     } else if (this.position.x >= this.gameWidth - this.width) {
       this.position.x = this.gameWidth - this.width;
     }
+
+    for (let i=0; i<platforms.length; i++) {
+      let platform = platforms[i];
+      if (this.onPlatform(this.position, platform)) {
+        this.jumping = false;
+        this.position.y = platform[1]-this.height;
+        this.velocity.y = 0;
+        break;
+      }
+    }
+    // platforms.forEach(platform => {
+    //   if (this.onPlatform(this.position, platform)) {
+    //     this.jumping = false;
+    //     this.position.y = platform[1]-this.height;
+    //     this.velocity.y = 0;
+    //     break;
+    //   }
+    // })
+
+  }
+
+  onPlatform(charPos, platform) {
+    // charPos = {
+    //   x: charPosX,
+    //   y: charPosY,
+    // }
+    // platform = [posX, posY, width]
+
+    if ((charPos.x >= platform[0] && 
+      charPos.x <= (platform[0]+platform[2])) && 
+      (charPos.y >= platform[1]-2 || charPos.y <= platform[1]+2)) {
+        return true
+      }
   }
 
 }
