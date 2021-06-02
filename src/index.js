@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let char = new Character(GAME_WIDTH, GAME_HEIGHT);
   new Controller(char)
   let bg = new Background(GAME_WIDTH, GAME_HEIGHT);
+  let frames = 0;
 
   document.addEventListener("keydown", event => {
     switch(event.code) {
@@ -32,7 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     bg.drawBackground(ctx);
     char.update();
-    char.drawChar(ctx);
+    char.drawChar(ctx, frames);
+
+    if (frames >= 60) {
+      frames = 0;
+    } else {
+      frames++;
+    }
+
     requestAnimationFrame(gameLoop);
   }
 

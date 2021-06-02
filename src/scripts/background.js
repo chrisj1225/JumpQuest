@@ -5,7 +5,7 @@ class Background {
   }
 
   drawBackground(ctx) {
-    ctx.fillStyle = "black"
+    ctx.fillStyle = "grey"
     ctx.fillRect(0, 0, this.width, this.height)
     ctx.fill();
   }

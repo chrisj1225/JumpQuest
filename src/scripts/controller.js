@@ -7,11 +7,13 @@ class Controller {
         case 'ArrowLeft':
           this.keys[event.code] = true
           char.direction = "left";
+          char.moving = true;
           char.keys = this.keys;
           break;
         case 'ArrowRight':
           this.keys[event.code] = true
           char.direction = "right";
+          char.moving = true;
           char.updateKeys(this.keys);
           break;
         case 'ArrowDown':

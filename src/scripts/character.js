@@ -1,9 +1,11 @@
+import { finnRight, finnLeft } from './util';
+
 class Character {
   constructor(gameWidth, gameHeight) {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
-    this.width = 50;
-    this.height = 80;
+    this.width = 64;
+    this.height = 64;
     this.direction = "right";
     this.moveSpeed = .75;
     this.jumpHeight = -12;
@@ -25,11 +27,49 @@ class Character {
     this.keys = {};
   }
 
-  drawChar(ctx) {
-    ctx.fillStyle = "white"
-    ctx.beginPath();
-    ctx.rect(this.position.x, this.position.y, this.width, this.height);
-    ctx.fill();
+  drawChar(ctx, frames) {
+    if (this.direction == 'left') {
+      if (this.jumping) { 
+        ctx.drawImage(finnLeft, 448, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+      } else if (this.moving) {
+        if (frames < 20) {
+          ctx.drawImage(finnLeft, 544, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        } else if (frames > 20 && frames < 40) { 
+          ctx.drawImage(finnLeft, 512, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        } else {
+          ctx.drawImage(finnLeft, 480, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        };
+      } else {
+        if (frames < 40) {
+          ctx.drawImage(finnLeft, 864, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        } else {
+          ctx.drawImage(finnLeft, 800, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        };
+      };
+    } else if (this.direction == 'right') {
+      if (this.jumping) {
+        ctx.drawImage(finnRight, 480, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+      } else if (this.moving) {
+        if (frames < 20) {
+          ctx.drawImage(finnRight, 320, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        } else if (frames > 20 && frames < 40) { 
+          ctx.drawImage(finnRight, 384, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        } else {
+          ctx.drawImage(finnRight, 416, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        };
+      } else {
+        if (frames < 40) {
+          ctx.drawImage(finnRight, 0, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        } else {
+          ctx.drawImage(finnRight, 64, 0, 32, 32, this.position.x, this.position.y, this.width, this.height);
+        }
+      }
+    }
+
+    // ctx.fillStyle = "white"
+    // ctx.beginPath();
+    // ctx.rect(this.position.x, this.position.y, this.width, this.height);
+    // ctx.fill();
   }
 
   updateKeys(keys) {
@@ -42,18 +82,17 @@ class Character {
   }
 
   jump() {
-    // console.log(keys)
     if (this.jumping) {
       this.velocity.y = this.jumpHeight
     }
   }
 
   crouch() {
-    this.height = 40;
+    this.height = 32;
   }
 
   uncrouch() {
-    this.height = 80;
+    this.height = 64;
   }
 
   update() {
@@ -62,6 +101,8 @@ class Character {
       this.velocity.x = -this.moveSpeed;
     } else if (this.keys['ArrowRight']) {
       this.velocity.x = this.moveSpeed;
+    } else {
+      this.moving = false;
     }
     
     this.position.y += this.velocity.y;
