@@ -9,7 +9,7 @@ class Character {
     this.direction = "right";
     this.moveSpeed = .75;
     this.jumpHeight = -10;
-    this.crouching = "false";
+    this.crouching = false;
     this.jumping = false;
     this.falling = false;
     this.position = {
@@ -96,6 +96,7 @@ class Character {
 
   uncrouch() {
     this.height = 40;
+    this.velocity.y = -5
   }
 
   update(platforms) {
@@ -107,7 +108,8 @@ class Character {
     } else {
       this.moving = false;
     }
-    
+
+    // char movements
     this.position.y += this.velocity.y;
     this.position.x += this.velocity.x;
     this.velocity.y += this.constants.gravity;
@@ -132,8 +134,8 @@ class Character {
         this.position.y = platform[1]-this.height;
         this.velocity.y = 0;
         break;
-      } else if (this.position.y >= this.gameHeight - this.height - 20) {
-        this.jumping = false; // char is no longer jumping when landed
+      } else if (this.position.y >= this.gameHeight-this.height-20) {
+        this.jumping = false;
         this.falling = false;
         this.position.y = this.gameHeight - this.height - 20;
         this.velocity.y = 0;
@@ -150,13 +152,21 @@ class Character {
     //   y: charPosY,
     // }
     // platform = [posX, posY, width]
-
-    if (((charPos.x + this.width -15) >= platform[0]) &&
-    ((charPos.x+15) <= (platform[0]+platform[2])) &&
-    ((charPos.y + 40) <= platform[1]) &&
-    ((charPos.y + 40) >= platform[1]-2)){
-        return true
-      }
+    if (this.crouching) {
+      if (((charPos.x + this.width -15) >= platform[0]) &&
+      ((charPos.x+15) <= (platform[0]+platform[2])) &&
+      ((charPos.y + 20) <= platform[1]) &&
+      ((charPos.y + 20) >= platform[1]-2)){
+          return true
+      };
+    } else {
+      if (((charPos.x + this.width -15) >= platform[0]) &&
+      ((charPos.x+15) <= (platform[0]+platform[2])) &&
+      ((charPos.y + 40) <= platform[1]) &&
+      ((charPos.y + 40) >= platform[1]-2)){
+          return true
+      };
+    };
   }
 
 }
