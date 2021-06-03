@@ -72,27 +72,26 @@ document.addEventListener("DOMContentLoaded", () => {
     16: [100, 4250, 50],
   };
   
-  // obstacle = [posX, posY, radius, orientation, travelLength, color, speed]
-  let newObstacles = {
-    1: [225, 4250, 10, "vertical", 300, "red", 0.5],
-    // 1: [500, 4400, 20, "horizontal", 300, "green", 1.0],
-  }
-
   function drawPlatforms() {
     Object.values(platforms).forEach((platform, i) => {
       let p = new Platform(...platform, i);
       p.drawPlatform(ctx);
     })
   };
+
+  // obstacle = [posX, posY, radius, orientation, travelLength, color, speed]
+  let newObstacles = {
+    1: [225, 4250, 10, "vertical", 300, "red", 0.5],
+    2: [500, 4400, 20, "horizontal", 300, "green", 1.0],
+  }
+
+  createObstacles();
   
   function createObstacles() {
     Object.values(newObstacles).forEach((obstacle, i) => {
-      let o = new Obstacle(...obstacle);
-      obstacles[i] = o;
+      obstacles[i] = new Obstacle(...obstacle);;
     })
   };
-
-  createObstacles();
 
   function updateObstacles() {
     Object.values(obstacles).forEach(obstacle => {
