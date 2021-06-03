@@ -96,7 +96,7 @@ class Character {
 
   uncrouch() {
     this.height = 40;
-    this.velocity.y = -5
+    this.velocity.y = -5;
   }
 
   update(platforms) {

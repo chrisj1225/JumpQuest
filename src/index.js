@@ -4,6 +4,7 @@ import Character from "./scripts/character";
 import Controller from "./scripts/controller";
 import Background from "./scripts/background";
 import Platform from "./scripts/platform";
+import Obstacle from "./scripts/obstacle";
 console.log("webpack is working properly");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -28,10 +29,17 @@ document.addEventListener("DOMContentLoaded", () => {
     8: [500, 4630, 50],
     9: [400, 4590, 50],
     10: [300, 4550, 50],
-    11: [200, 4510, 50],
-    12: [100, 4470, 50],
-  
+    11: [200, 4500, 50],
+    12: [100, 4450, 50],
+    13: [200, 4400, 50],
+    14: [100, 4350, 50],
+    15: [200, 4300, 50],
+    16: [100, 4250, 50],
   };
+
+  let obstacles = {
+    1: [225, 4250, 10],
+  }
 
   document.addEventListener("keydown", event => {
     switch(event.code) {
@@ -50,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     bg.drawBackground(ctx);
     drawPlatforms();
+    drawObstacles();
     char.update(Object.values(platforms));
     char.drawChar(ctx, frames);
 
@@ -63,9 +72,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function drawPlatforms() {
-    Object.values(platforms).forEach(platform => {
-      let p = new Platform(...platform);
+    Object.values(platforms).forEach((platform, i) => {
+      let p = new Platform(...platform, i);
       p.drawPlatform(ctx);
+    })
+  }
+
+  function drawObstacles() {
+    Object.values(obstacles).forEach(obstacle => {
+      let o = new Obstacle(...obstacle);
+      o.drawObstacle(ctx);
     })
   }
 
