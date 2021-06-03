@@ -17,6 +17,41 @@ document.addEventListener("DOMContentLoaded", () => {
   new Controller(char)
   let bg = new Background(GAME_WIDTH, GAME_HEIGHT);
   let frames = 0;
+  let obstacles = {};
+
+  document.addEventListener("keydown", event => {
+    switch(event.code) {
+      case 'Enter':
+        startGame();
+        break
+      default:
+        return;
+    }
+  })
+    
+  function startGame() {
+    gameLoop();
+    requestAnimationFrame(gameLoop);
+  }
+
+  function gameLoop() {
+    // ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    bg.drawBackground(ctx);
+    drawPlatforms();
+    updateObstacles();
+    drawObstacles();
+    char.update(Object.values(platforms));
+    char.drawChar(ctx, frames);
+
+    if (frames >= 60) {
+      frames = 0;
+    } else {
+      frames++;
+    }
+
+    requestAnimationFrame(gameLoop);
+  }
+
   // platform = [posX, posY, width]
   let platforms = {
     1: [200, 4910, 100],
@@ -36,39 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
     15: [200, 4300, 50],
     16: [100, 4250, 50],
   };
-
-  let obstacles = {
-    1: [225, 4250, 10],
-  }
-
-  document.addEventListener("keydown", event => {
-    switch(event.code) {
-      case 'Enter':
-        startGame();
-        break
-    }
-  })
-
-  function startGame() {
-    gameLoop();
-    requestAnimationFrame(gameLoop);
-  }
-
-  function gameLoop() {
-    // ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-    bg.drawBackground(ctx);
-    drawPlatforms();
-    drawObstacles();
-    char.update(Object.values(platforms));
-    char.drawChar(ctx, frames);
-
-    if (frames >= 60) {
-      frames = 0;
-    } else {
-      frames++;
-    }
-
-    requestAnimationFrame(gameLoop);
+  
+  // obstacle = [posX, posY, radius, orientation, travelLength, color, speed]
+  let newObstacles = {
+    1: [225, 4250, 10, "vertical", 300, "red", 0.5],
   }
 
   function drawPlatforms() {
@@ -76,13 +82,27 @@ document.addEventListener("DOMContentLoaded", () => {
       let p = new Platform(...platform, i);
       p.drawPlatform(ctx);
     })
-  }
+  };
+  
+  function createObstacles() {
+    Object.values(newObstacles).forEach((obstacle, i) => {
+      let o = new Obstacle(...obstacle);
+      obstacles[i] = o;
+    })
+  };
+
+  createObstacles();
+
+  function updateObstacles() {
+    Object.values(obstacles).forEach(obstacle => {
+      obstacle.update();
+    });
+  };
 
   function drawObstacles() {
     Object.values(obstacles).forEach(obstacle => {
-      let o = new Obstacle(...obstacle);
-      o.drawObstacle(ctx);
-    })
-  }
+      obstacle.drawObstacle(ctx);
+    });
+  };
 
 })
