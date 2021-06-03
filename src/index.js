@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // obstacle = [posX, posY, radius, orientation, travelLength, color, speed]
   let newObstacles = {
     1: [225, 4250, 10, "vertical", 300, "red", 0.5],
+    // 1: [500, 4400, 20, "horizontal", 300, "green", 1.0],
   }
 
   function drawPlatforms() {
