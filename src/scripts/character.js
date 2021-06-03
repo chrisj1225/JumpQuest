@@ -37,7 +37,7 @@ class Character {
     // ctx.stroke();
 
     if (this.direction == 'left') {
-      if (this.jumping) { 
+      if (this.jumping || this.falling) { 
         ctx.drawImage(finnLeft, 448, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
       } else if (this.moving) {
         if (frames < 20) {
@@ -55,7 +55,7 @@ class Character {
         };
       };
     } else if (this.direction == 'right') {
-      if (this.jumping) {
+      if (this.jumping || this.falling) {
         ctx.drawImage(finnRight, 480, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
       } else if (this.moving) {
         if (frames < 20) {
