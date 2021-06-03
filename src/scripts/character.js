@@ -8,7 +8,7 @@ class Character {
     this.height = 40;
     this.direction = "right";
     this.moveSpeed = .75;
-    this.jumpHeight = -12;
+    this.jumpHeight = -10;
     this.crouching = "false";
     this.jumping = false;
     this.falling = false;
@@ -114,13 +114,6 @@ class Character {
     this.velocity.x *= this.constants.friction;
     this.velocity.y *= this.constants.friction;
 
-    // if char is falling below floor line, stop falling
-    if (this.position.y > this.gameHeight - this.height - 20) {
-      this.jumping = false; // char is no longer jumping when landed
-      this.position.y = this.gameHeight - this.height - 20;
-      this.velocity.y = 0;
-    }
-
     // if char is going off screen, stop at edge of screen
     if (this.position.x <= 0) {
       this.position.x = 0;
@@ -129,14 +122,25 @@ class Character {
     }
 
     // check if char is standing on any platform
+    // else check if char is falling below floor line
+    // else char is currently falling
     for (let i=0; i<platforms.length; i++) {
       let platform = platforms[i];
       if (this.onPlatform(this.position, platform)) {
+        this.falling = false;
         this.jumping = false;
         this.position.y = platform[1]-this.height;
         this.velocity.y = 0;
         break;
-      }
+      } else if (this.position.y >= this.gameHeight - this.height - 20) {
+        this.jumping = false; // char is no longer jumping when landed
+        this.falling = false;
+        this.position.y = this.gameHeight - this.height - 20;
+        this.velocity.y = 0;
+        break;
+      } else {
+        this.falling = true;
+      };
     }
   }
 
