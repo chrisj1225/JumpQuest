@@ -40,7 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
     drawPlatforms();
     updateObstacles();
     drawObstacles();
-    char.update(Object.values(platforms));
+    // write algorithm to only pass in platforms & obstacles in current vp
+    char.update(Object.values(platforms), Object.values(obstacles));
     char.drawChar(ctx, frames);
 
     if (frames >= 60) {

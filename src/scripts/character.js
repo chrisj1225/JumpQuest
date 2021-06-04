@@ -99,7 +99,7 @@ class Character {
     this.velocity.y = -5;
   }
 
-  update(platforms) {
+  update(platforms, obstacles) {
     // check current key presses
     if (this.keys['ArrowLeft']) {
       this.velocity.x = -this.moveSpeed;
@@ -123,6 +123,7 @@ class Character {
       this.position.x = this.gameWidth - this.width;
     }
 
+    // **Write code to filter out platforms NOT in current view frame**
     // check if char is standing on any platform
     // else check if char is falling below floor line
     // else char is currently falling
@@ -144,6 +145,16 @@ class Character {
         this.falling = true;
       };
     }
+
+    // **Write code fo tiler out obstacles NOT in current view frame**
+    for (let i=0; i<obstacles.length; i++) {
+      let obstacle = obstacles[i];
+      if (this.collisionDetection(obstacle)) {
+        console.log('collision!');
+        break;
+      } 
+    }
+
   }
 
   onPlatform(charPos, platform) {
@@ -167,6 +178,40 @@ class Character {
           return true
       };
     };
+  }
+
+  // return true if an obstacle collides with user
+  collisionDetection(obstacle) {
+    let o = {
+      x: obstacle.position.x,
+      y: obstacle.position.y,
+      r: obstacle.radius
+    };
+    let c = {
+      x: this.position.x,
+      y: this.position.y,
+      w: this.width,
+      h: this.height
+    }
+
+    // find horiz/vert distance b/w center of obstacle & character
+    let distX = Math.abs(o.x - c.x - c.w/2);
+    let distY = Math.abs(o.y - c.y - c.h/2);
+
+    // return false if dist is greater than min dist b/w edges (x or y)
+    if ((distX > (c.w/2 + o.r)) || (distY > (c.h/2 + o.r))) {return false};
+
+    // return true if dist is <= char width/2
+    if ((distX <= (c.w/2)) && (distY <= (c.h/2))) {return true};
+
+    // dx & dy = dist b/w obstacle center & char edge (x & y)
+    let dx = distX - c.w / 2;
+    let dy = distY - c.h / 2;
+
+    // use pythagorean theorem to see if radius^2  
+    // is greater than hypotenuse of dx^2 + dy^2 
+    // if greater, object and char are colliding (true)
+    return (Math.pow(dx,2) + Math.pow(dy,2) <= Math.pow(o.r,2));
   }
 
 }
