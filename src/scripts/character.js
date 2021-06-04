@@ -12,6 +12,7 @@ class Character {
     this.crouching = false;
     this.jumping = false;
     this.falling = false;
+    this.isColliding = false;
     this.position = {
       x: 100,
       y: this.gameHeight - this.height - 20,
@@ -29,12 +30,12 @@ class Character {
 
   drawChar(ctx, frames) {
     // testing character boundaries
-    // ctx.strokeStyle = "green";
-    // ctx.moveTo(this.position.x, this.position.y);
-    // ctx.lineTo(this.position.x, 0);
-    // ctx.moveTo(this.position.x+this.width, this.position.y);
-    // ctx.lineTo(this.position.x+this.width, 0);
-    // ctx.stroke();
+    ctx.strokeStyle = "green";
+    ctx.moveTo(this.position.x, this.position.y);
+    ctx.lineTo(this.position.x, 0);
+    ctx.moveTo(this.position.x+this.width, this.position.y);
+    ctx.lineTo(this.position.x+this.width, 0);
+    ctx.stroke();
 
     if (this.direction == 'left') {
       if (this.jumping || this.falling) { 
@@ -146,16 +147,32 @@ class Character {
       };
     }
 
-    // **Write code fo tiler out obstacles NOT in current view frame**
+    // **Write code to filter out obstacles NOT in current view frame**
     for (let i=0; i<obstacles.length; i++) {
       let obstacle = obstacles[i];
       if (this.collisionDetection(obstacle)) {
-        console.log('collision!');
+        // console.log('collision!');
+        this.isColliding = true;
+        if (obstacle.orientation == 'vertical') {
+          if (this.direction == 'left') {
+            this.position.x += 10;
+          } else {
+            this.position.x -= 10;
+          }
+        } else {
+          if (obstacle.direction = 'RD') {
+            this.position.x -= 10;
+          } else {
+            this.position.x += 10;
+          }
+        }
         break;
-      } 
+      } else {
+        this.isColliding = false;
+      }
     }
 
-  }
+  };
 
   onPlatform(charPos, platform) {
     // charPos = {
@@ -188,9 +205,9 @@ class Character {
       r: obstacle.radius
     };
     let c = {
-      x: this.position.x,
+      x: this.position.x + 12,
       y: this.position.y,
-      w: this.width,
+      w: this.width-8,
       h: this.height
     }
 
