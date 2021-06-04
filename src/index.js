@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function gameLoop() {
-    // ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     bg.drawBackground(ctx);
     drawPlatforms();
     updateObstacles();
@@ -82,9 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // obstacle = [posX, posY, radius, orientation, travelLength, color, speed]
   let newObstacles = {
-    1: [800, 4740, 5, "horizontal", 100, "blue", .1],
-    2: [225, 4250, 10, "vertical", 300, "red", 0.5],
-    3: [500, 4400, 20, "horizontal", 300, "green", 1.0],
+    1: [800, 4740, 5, "horizontal", 100, "gold", .1],
+    2: [225, 4250, 10, "vertical", 300, "crimson", 0.5],
+    3: [500, 4400, 20, "horizontal", 300, "LimeGreen", 1.0],
   }
 
   createObstacles();
