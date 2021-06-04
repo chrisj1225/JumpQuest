@@ -10,16 +10,24 @@ class Platform {
   }
 
   drawPlatform(ctx) {
-    ctx.fillStyle = "SaddleBrown";
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    ctx.fill();
-    ctx.fillStyle = "snow";
-    ctx.fillRect(this.position.x, this.position.y, this.width/2, 6);
-    ctx.fillRect(this.position.x + this.width/2, this.position.y, this.width/2, 5);
-    ctx.fill();
+    if (this.position.y >= 3750) {
+      ctx.fillStyle = "SaddleBrown";
+      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    } else {
+      ctx.fillStyle = "gold",
+      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+    // ctx.fill();
+    // ctx.fillStyle = "snow";
+    // ctx.fillRect(this.position.x, this.position.y, this.width/2, 6);
+    // ctx.fillRect(this.position.x + this.width/2, this.position.y, this.width/2, 5);
+    // ctx.fill();
 
+    // ctx.fillStyle = "pink";
+    // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    
     // printing platform index/key & coordinates
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "black"; 
     ctx.font ="14px serif";
     ctx.fillText(`${this.index}: ${this.position.x}, ${this.position.y}`, 
       this.position.x, this.position.y+33);

@@ -4,3 +4,7 @@ export const finnLeft = new Image();
 finnLeft.src = './dist/images/FinnSprite-left.png';
 export const snowyBg = new Image();
 snowyBg.src = './dist/images/snowy-bg.png';
+export const peaceBg = new Image();
+peaceBg.src = './dist/images/peaceful-bg.png';
+export const mountainBg = new Image();
+mountainBg.src = './dist/images/mountain-bg.png';
