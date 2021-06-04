@@ -38,10 +38,10 @@ class Character {
     // ctx.stroke();
 
     if (this.direction == 'left') {
-      if (this.jumping || this.falling) { 
-        ctx.drawImage(finnLeft, 448, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
-      } else if (this.isColliding) {
+      if (this.isColliding) {
         ctx.drawImage(finnLeft, 352, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
+      } else if (this.jumping || this.falling) { 
+        ctx.drawImage(finnLeft, 448, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
       } else if (this.moving) {
         if (frames < 20) {
           ctx.drawImage(finnLeft, 544, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
@@ -58,7 +58,9 @@ class Character {
         };
       };
     } else if (this.direction == 'right') {
-      if (this.jumping || this.falling) {
+      if (this.isColliding) { 
+        ctx.drawImage(finnRight, 512, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
+      } else if (this.jumping || this.falling) {
         ctx.drawImage(finnRight, 480, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
       } else if (this.moving) {
         if (frames < 20) {
@@ -153,10 +155,9 @@ class Character {
     for (let i=0; i<obstacles.length; i++) {
       let obstacle = obstacles[i];
       if (this.collisionDetection(obstacle)) {
-        // console.log('collision!');
-        console.log(obstacle.direction);
         this.isColliding = true;
-        setTimeout(() => {this.colliding = false;}, 1000)
+        // setTimeout(() => {this.colliding = false}, 1000);
+
         if (obstacle.orientation == 'vertical') {
           if (this.direction == 'left') {
             this.position.x += 15;
