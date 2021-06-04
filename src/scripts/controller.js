@@ -5,18 +5,21 @@ class Controller {
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
         case 'ArrowLeft':
+        case 'KeyA':  
           this.keys[event.code] = true
           char.direction = "left";
           char.moving = true;
           char.keys = this.keys;
           break;
         case 'ArrowRight':
+        case 'KeyD':
           this.keys[event.code] = true
           char.direction = "right";
           char.moving = true;
           char.updateKeys(this.keys);
           break;
         case 'ArrowDown':
+        case 'KeyS':
           // this.keys[event.code] = true
           char.crouching = true;
           char.crouch();   
@@ -33,16 +36,19 @@ class Controller {
     document.addEventListener('keyup', (event) => {
       switch (event.code) {
         case 'ArrowLeft':
+        case 'KeyA': 
           this.keys[event.code] = false;
           char.keys = this.keys;
           char.stop();
           break;
         case 'ArrowRight':
+        case 'KeyD':
           this.keys[event.code] = false;
           char.keys = this.keys;
           char.stop();
           break;
         case 'ArrowDown':
+        case 'KeyS':
           // this.keys[event.code] = false;
           char.crouching = false;
           char.uncrouch();

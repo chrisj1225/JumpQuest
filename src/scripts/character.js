@@ -106,9 +106,9 @@ class Character {
 
   update(platforms, obstacles) {
     // check current key presses
-    if (this.keys['ArrowLeft']) {
+    if (this.keys['ArrowLeft'] || this.keys['KeyA']) {
       this.velocity.x = -this.moveSpeed;
-    } else if (this.keys['ArrowRight']) {
+    } else if (this.keys['ArrowRight'] || this.keys['KeyD']) {
       this.velocity.x = this.moveSpeed;
     } else {
       this.moving = false;

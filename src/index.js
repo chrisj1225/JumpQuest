@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // obstacle = [posX, posY, radius, orientation, travelLength, color, speed]
   let newObstacles = {
-    1: [800, 3740, 5, "horizontal", 100, "gold", .1],
+    1: [800, 3740, 5, "horizontal", 100, "violet", .1],
     2: [225, 3250, 10, "vertical", 300, "crimson", 0.5],
     3: [500, 3400, 20, "horizontal", 300, "LimeGreen", 1.0],
   }
