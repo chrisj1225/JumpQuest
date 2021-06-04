@@ -10,8 +10,8 @@ console.log("webpack is working properly");
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("jump-quest");
   let ctx = canvas.getContext("2d");
-  const GAME_WIDTH = ctx.canvas.width;
-  const GAME_HEIGHT = ctx.canvas.height;
+  const GAME_WIDTH = canvas.width; // 1000
+  const GAME_HEIGHT = canvas.height; // 800
 
   let char = new Character(GAME_WIDTH, GAME_HEIGHT);
   new Controller(char)
@@ -55,22 +55,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // platform = [posX, posY, width]
   let platforms = {
-    1: [200, 3910, 100],
-    2: [350, 3870, 100],
-    3: [500, 3830, 100],
-    4: [650, 3790, 100],
-    5: [800, 3750, 100],
-    6: [700, 3710, 50],
-    7: [600, 3670, 50],
-    8: [500, 3630, 50],
-    9: [400, 3590, 50],
-    10: [300, 3550, 50],
-    11: [200, 3500, 50],
-    12: [100, 3450, 50],
-    13: [200, 3400, 50],
-    14: [100, 3350, 50],
-    15: [200, 3300, 50],
-    16: [100, 3250, 50],
+    1: [200, 710, 100],
+    2: [350, 670, 100],
+    3: [500, 630, 100],
+    4: [650, 590, 100],
+    5: [800, 550, 100],
+    6: [700, 510, 50],
+    7: [600, 470, 50],
+    8: [500, 430, 50],
+    9: [400, 390, 50],
+    10: [300, 350, 50],
+    11: [200, 300, 50],
+    12: [100, 250, 50],
+    13: [200, 200, 50],
+    14: [100, 150, 50],
+    15: [200, 100, 50],
+    16: [100, 50, 50],
   };
   
   function drawPlatforms() {
@@ -82,9 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // obstacle = [posX, posY, radius, orientation, travelLength, color, speed]
   let newObstacles = {
-    1: [800, 3740, 5, "horizontal", 100, "violet", .1],
-    2: [225, 3250, 10, "vertical", 300, "crimson", 0.5],
-    3: [500, 3400, 20, "horizontal", 300, "LimeGreen", 1.0],
+    1: [800, 540, 5, "horizontal", 100, "violet", .1],
+    2: [225, 50, 10, "vertical", 300, "crimson", 0.5],
+    3: [500, 200, 20, "horizontal", 300, "LimeGreen", 1.0],
   }
 
   createObstacles();
