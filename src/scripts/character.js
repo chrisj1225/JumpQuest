@@ -12,7 +12,7 @@ class Character {
     this.crouching = false;
     this.jumping = false;
     this.falling = false;
-    this.isColliding = true;
+    this.isColliding = false;
     this.position = {
       x: 100,
       y: this.gameHeight - this.height - 20,
@@ -41,7 +41,7 @@ class Character {
       if (this.jumping || this.falling) { 
         ctx.drawImage(finnLeft, 448, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
       } else if (this.isColliding) {
-        ctx.drawImage(finnLeft, 416, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
+        ctx.drawImage(finnLeft, 352, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
       } else if (this.moving) {
         if (frames < 20) {
           ctx.drawImage(finnLeft, 544, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
@@ -154,18 +154,22 @@ class Character {
       let obstacle = obstacles[i];
       if (this.collisionDetection(obstacle)) {
         // console.log('collision!');
+        console.log(obstacle.direction);
         this.isColliding = true;
+        setTimeout(() => {this.colliding = false;}, 1000)
         if (obstacle.orientation == 'vertical') {
           if (this.direction == 'left') {
-            this.position.x += 10;
+            this.position.x += 15;
+            this.position.y += 1;
           } else {
-            this.position.x -= 10;
+            this.position.x -= 15;
+            this.position.y += 1;
           }
         } else {
-          if (obstacle.direction = 'RD') {
-            this.position.x -= 10;
-          } else {
-            this.position.x += 10;
+          if (obstacle.direction == "RD") {
+            this.position.x += 20;
+          } else if (obstacle.direction == "LU") {
+            this.position.x -= 20;
           }
         }
         break;
