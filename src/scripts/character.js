@@ -14,7 +14,7 @@ class Character {
     this.falling = false;
     this.isColliding = false;
     this.position = {
-      x: 100,
+      x: 50,
       y: this.gameHeight - this.height - 20,
     };
     this.velocity = {

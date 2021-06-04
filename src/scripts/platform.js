@@ -1,6 +1,6 @@
 class Platform {
   constructor(posX, posY, width, i) {
-    this.height = 20;
+    this.height = 15;
     this.width = width;
     this.position = {
       x: posX,
@@ -10,18 +10,10 @@ class Platform {
   }
 
   drawPlatform(ctx) {
-    if (this.position.y >= 3750) {
-      ctx.fillStyle = "SaddleBrown";
-      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    } else {
-      ctx.fillStyle = "gold",
-      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    }
-    // ctx.fill();
-    // ctx.fillStyle = "snow";
-    // ctx.fillRect(this.position.x, this.position.y, this.width/2, 6);
-    // ctx.fillRect(this.position.x + this.width/2, this.position.y, this.width/2, 5);
-    // ctx.fill();
+    ctx.fillStyle = "khaki",
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    // ctx.fillStyle = "SaddleBrown",
+    // ctx.fillRect(this.position.x, this.position.y, this.width, 5);
 
     // ctx.fillStyle = "pink";
     // ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
