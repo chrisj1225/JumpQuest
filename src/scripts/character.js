@@ -12,7 +12,7 @@ class Character {
     this.crouching = false;
     this.jumping = false;
     this.falling = false;
-    this.isColliding = false;
+    this.isColliding = true;
     this.position = {
       x: 100,
       y: this.gameHeight - this.height - 20,
@@ -30,16 +30,18 @@ class Character {
 
   drawChar(ctx, frames) {
     // testing character boundaries
-    ctx.strokeStyle = "green";
-    ctx.moveTo(this.position.x, this.position.y);
-    ctx.lineTo(this.position.x, 0);
-    ctx.moveTo(this.position.x+this.width, this.position.y);
-    ctx.lineTo(this.position.x+this.width, 0);
-    ctx.stroke();
+    // ctx.strokeStyle = "green";
+    // ctx.moveTo(this.position.x+20, this.position.y);
+    // ctx.lineTo(this.position.x+20, 0);
+    // ctx.moveTo(this.position.x+this.width-30, this.position.y);
+    // ctx.lineTo(this.position.x+this.width-30, 0);
+    // ctx.stroke();
 
     if (this.direction == 'left') {
       if (this.jumping || this.falling) { 
         ctx.drawImage(finnLeft, 448, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
+      } else if (this.isColliding) {
+        ctx.drawImage(finnLeft, 416, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
       } else if (this.moving) {
         if (frames < 20) {
           ctx.drawImage(finnLeft, 544, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
@@ -205,9 +207,9 @@ class Character {
       r: obstacle.radius
     };
     let c = {
-      x: this.position.x + 12,
+      x: this.position.x + 20,
       y: this.position.y,
-      w: this.width-8,
+      w: this.width-30,
       h: this.height
     }
 

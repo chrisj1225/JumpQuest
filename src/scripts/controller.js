@@ -23,7 +23,7 @@ class Controller {
           break;
         case 'Space':
           // this.keys[event.code] = true
-          if (!char.jumping && !char.falling) {
+          if (!char.jumping && !char.falling && !char.colliding) {
             char.jumping = true;
             char.jump();
           }
