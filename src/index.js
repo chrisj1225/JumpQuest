@@ -11,19 +11,28 @@ import { beemo } from './scripts/util';
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("jump-quest");
   let ctx = canvas.getContext("2d");
+
+  // game variables
   let gameStart = false;
   const GAME_WIDTH = canvas.width; // 1000
   const GAME_HEIGHT = canvas.height; // 800
-
   let char = new Character(GAME_WIDTH, GAME_HEIGHT);
   new Controller(char)
   let bg = new Background(GAME_WIDTH, GAME_HEIGHT);
   let frames = 0;
   let obstacles = {};
 
+  // controls/how-to-play variables
   let controlsShown = false;
   let controlsBtn = document.getElementById("controls-btn");
   let controls = document.getElementById('controls');
+
+  // audio/bgm variables
+  let bgm = new Audio("./src/audio/good-morning-insecure.mp3");
+  let musicPlaying = false;
+  let musicBtn = document.getElementById("music-btn");
+  let playBtn = document.getElementById("play-btn");
+  let pauseBtn = document.getElementById("pause-btn");
 
   controlsBtn.addEventListener("click", e => {
     e.preventDefault();
@@ -38,9 +47,32 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   });
 
+  musicBtn.addEventListener("click", e => {
+    e.preventDefault();
+    if (musicPlaying) {
+      musicPlaying = false;
+      bgm.pause();
+      pauseBtn.classList.add("hidden");
+      playBtn.classList.remove("hidden");
+    } else {
+      musicPlaying = true;
+      bgm.loop = true;
+      bgm.play();
+      pauseBtn.classList.remove("hidden");
+      playBtn.classList.add("hidden");
+    }
+  })
+
   document.addEventListener("keydown", event => {
     switch(event.code) {
       case 'Enter':
+        if (!musicPlaying) {
+          musicPlaying = true;
+          bgm.loop = true;
+          pauseBtn.classList.remove("hidden");
+          playBtn.classList.add("hidden");
+          bgm.play();
+        }
         gameStart = true;
         startGame();
         break

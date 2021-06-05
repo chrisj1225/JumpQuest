@@ -26,6 +26,10 @@ const welcomeModal = (ctx, gameStart, GAME_WIDTH, GAME_HEIGHT) => {
     ctx.font = 'bold 40px arial';
     ctx.fillText("Press ENTER to begin!", 275, 700);
     ctx.fill();
+
+    ctx.font = 'bold 20px arial';
+    ctx.fillText("Game design by Chris Joo", 730, 790);
+    ctx.fill();
     
     beemo.onload = function() {
       ctx.drawImage(beemo, 200, 125, 33, 40);
