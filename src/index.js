@@ -1,5 +1,6 @@
 import "./styles/index.scss";
 // import JumpQuest from "./scripts/game";
+import welcomeModal from './scripts/welcome';
 import Character from "./scripts/character";
 import Controller from "./scripts/controller";
 import Background from "./scripts/background";
@@ -10,6 +11,7 @@ import { beemo } from './scripts/util';
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("jump-quest");
   let ctx = canvas.getContext("2d");
+  let gameStart = false;
   const GAME_WIDTH = canvas.width; // 1000
   const GAME_HEIGHT = canvas.height; // 800
 
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", event => {
     switch(event.code) {
       case 'Enter':
+        gameStart = true;
         startGame();
         break
       default:
@@ -142,5 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
       obstacle.drawObstacle(ctx);
     });
   };
+
+  welcomeModal(ctx, gameStart, GAME_WIDTH, GAME_HEIGHT);
 
 })
