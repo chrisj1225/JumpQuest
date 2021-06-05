@@ -14,10 +14,10 @@ class Platform {
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
     
     // printing platform index/key & coordinates
-    ctx.fillStyle = "black"; 
-    ctx.font ="14px serif";
-    ctx.fillText(`${this.index}: ${this.position.x}, ${this.position.y}`, 
-      this.position.x, this.position.y+33);
+    // ctx.fillStyle = "black"; 
+    // ctx.font ="14px serif";
+    // ctx.fillText(`${this.index}: ${this.position.x}, ${this.position.y}`, 
+    //   this.position.x, this.position.y+33);
 
     // testing platform boundaries
     // ctx.beginPath();
