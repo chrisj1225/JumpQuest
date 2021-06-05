@@ -5,7 +5,7 @@ import Controller from "./scripts/controller";
 import Background from "./scripts/background";
 import Platform from "./scripts/platform";
 import Obstacle from "./scripts/obstacle";
-console.log("webpack is working properly");
+import { beemo } from './scripts/util';
 
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("jump-quest");
@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // write algorithm to only pass in platforms & obstacles in current vp
     char.update(Object.values(platforms), Object.values(obstacles));
     char.drawChar(ctx, frames);
+    ctx.drawImage(beemo, 0, 0, 33, 40, 0, 10, 33, 40);
 
     if (frames >= 60) {
       frames = 0;
@@ -82,10 +83,20 @@ document.addEventListener("DOMContentLoaded", () => {
     24: [350, 300, 100],
     25: [500, 300, 100],
     26: [650, 300, 100],
-    // 26: [600, 290, 50],
     27: [800, 250, 50],
     28: [850, 210, 50],
-
+    29: [800, 170, 50],
+    30: [750, 130, 50],
+    31: [700, 170, 50],
+    32: [650, 210, 50],
+    33: [600, 170, 50],
+    34: [550, 130, 50],
+    35: [500, 90, 50],
+    36: [450, 130, 50],
+    37: [200, 130, 200],
+    38: [125, 90, 50],
+    39: [0, 50, 100],
+    40: [900, 50, 100],
   };
   
   function drawPlatforms() {
@@ -105,6 +116,11 @@ document.addEventListener("DOMContentLoaded", () => {
     6: [325, 260, 10, "vertical", 100, "crimson", 0.3],
     7: [625, 260, 10, "vertical", 100, "crimson", 0.3],
     8: [350, 260, 10, "horizontal", 250, "indigo", 0.375],
+    9: [650, 195, 5, "horizontal", 250, "orange", 0.5],
+    10: [600, 150, 10, "horizontal", 250, "indigo", 0.375],
+    11: [525, 20, 5, "vertical", 140, "maroon", 0.3],
+    12: [350, 60, 5, "vertical", 140, "MediumSlateBlue", 0.4],
+    13: [250, 60, 5, "vertical", 140, "MediumSlateBlue", 0.4],
   }
 
   createObstacles();
