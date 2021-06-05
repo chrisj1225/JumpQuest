@@ -1,6 +1,7 @@
 class Controller {
   constructor(char) {
     this.keys = {};
+    this.jumpSFX = new Audio("./src/audio/maple-jump-sfx.mp3")
 
     document.addEventListener('keydown', (event) => {
       switch (event.code) {
@@ -27,6 +28,7 @@ class Controller {
         case 'Space':
           // this.keys[event.code] = true
           if (!char.jumping && !char.falling && !char.colliding) {
+            this.jumpSFX.play();
             char.jumping = true;
             char.jump();
           }
