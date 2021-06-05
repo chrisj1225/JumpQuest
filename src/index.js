@@ -7,6 +7,7 @@ import Background from "./scripts/background";
 import Platform from "./scripts/platform";
 import Obstacle from "./scripts/obstacle";
 import { beemo } from './scripts/util';
+import winnerModal from './scripts/winner';
 
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("jump-quest");
@@ -96,6 +97,14 @@ document.addEventListener("DOMContentLoaded", () => {
     char.update(Object.values(platforms), Object.values(obstacles));
     char.drawChar(ctx, frames);
     ctx.drawImage(beemo, 0, 0, 33, 40, 0, 10, 33, 40);
+
+    if ((char.position.x <= 10 ) && (char.position.y <= 10)) {
+      musicPlaying = false;
+      bgm.pause();
+      pauseBtn.classList.add("hidden");
+      playBtn.classList.remove("hidden");
+      winnerModal(ctx, GAME_WIDTH, GAME_HEIGHT);
+    }
 
     if (frames >= 60) {
       frames = 0;
