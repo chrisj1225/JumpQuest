@@ -21,6 +21,23 @@ document.addEventListener("DOMContentLoaded", () => {
   let frames = 0;
   let obstacles = {};
 
+  let controlsShown = false;
+  let controlsBtn = document.getElementById("controls-btn");
+  let controls = document.getElementById('controls');
+
+  controlsBtn.addEventListener("click", e => {
+    e.preventDefault();
+    if (controlsShown) {
+      controlsShown = false;
+      controls.classList.add("hidden");
+      controlsBtn.classList.remove("clicked");
+    } else {
+      controlsShown = true;
+      controls.classList.remove("hidden");
+      controlsBtn.classList.add("clicked");
+    };
+  });
+
   document.addEventListener("keydown", event => {
     switch(event.code) {
       case 'Enter':
