@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
             bgm.play();
           }
           gameStart = true;
-          // startGame();
-          startAnimating(240)
+          startGame();
+          // startAnimating(240)
           break
         }
       default:
@@ -85,29 +85,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
     
-  let fps, interval, startTime, now, then, elapsed;
-  function startAnimating(fps) {
-    interval = 1000 / fps;
-    then = Date.now();
-    startTime = then;
-    animate();
-  }
-
-  function animate() {
-    now = Date.now();
-    elapsed = now - then;
-    if (elapsed > interval) {
-      then = now - (elapsed % interval);
-      gameLoop();
-    };
-
-    requestAnimationFrame(animate);
-  }
-
-  // function startGame() {
-  //   gameLoop();
-  //   requestAnimationFrame(gameLoop);
+  // let fps, interval, startTime, now, then, elapsed;
+  // function startAnimating(fps) {
+  //   interval = 1000 / fps;
+  //   then = Date.now();
+  //   startTime = then;
+  //   animate();
   // }
+
+  // function animate() {
+  //   now = Date.now();
+  //   elapsed = now - then;
+  //   if (elapsed > interval) {
+  //     then = now - (elapsed % interval);
+  //     gameLoop();
+  //   };
+
+  //   requestAnimationFrame(animate);
+  // }
+
+  function startGame() {
+    gameLoop();
+    requestAnimationFrame(gameLoop);
+  }
 
   function gameLoop() {
     ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
@@ -134,8 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
       frames++;
     }
 
-    // requestAnimationFrame(gameLoop);
-    requestAnimationFrame(animate);
+    requestAnimationFrame(gameLoop);
+    // requestAnimationFrame(animate);
   }
 
   // platform = [posX, posY, width]
@@ -191,6 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // obstacle = [posX, posY, radius, orientation, travelLength, color, speed]
+  // obstacle speeds for 240 FPS.
   let newObstacles = {
     1: [750, 570, 5, "horizontal", 100, "violet", 0.1],
     2: [625, 450, 5, "horizontal", 200, "forestgreen", 0.3],
@@ -206,6 +207,22 @@ document.addEventListener("DOMContentLoaded", () => {
     12: [350, 60, 5, "vertical", 140, "MediumSlateBlue", 0.4],
     13: [250, 60, 5, "vertical", 140, "MediumSlateBlue", 0.4],
   }
+  // obstacle speeds for 60 FPS.
+  // let newObstacles = {
+  //   1: [750, 570, 5, "horizontal", 100, "violet", 0.4],
+  //   2: [625, 450, 5, "horizontal", 200, "forestgreen", 1.2],
+  //   3: [225, 450, 5, "horizontal", 200, "forestgreen", 1.2],
+  //   4: [525, 350, 5, "vertical", 150, "skyblue", 1.2],
+  //   5: [75, 300, 5, "vertical", 150, "skyblue", 1.2],
+  //   6: [325, 260, 10, "vertical", 100, "crimson", 1.2],
+  //   7: [625, 260, 10, "vertical", 100, "crimson", 1.2],
+  //   8: [350, 260, 10, "horizontal", 250, "indigo", 1.5],
+  //   9: [650, 195, 5, "horizontal", 250, "orange", 2],
+  //   10: [600, 150, 10, "horizontal", 250, "indigo", 1.5],
+  //   11: [525, 20, 5, "vertical", 140, "maroon", 1.2],
+  //   12: [350, 60, 5, "vertical", 140, "MediumSlateBlue", 1.6],
+  //   13: [250, 60, 5, "vertical", 140, "MediumSlateBlue", 1.6],
+  // }
 
   createObstacles();
   
