@@ -67,16 +67,18 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", event => {
     switch(event.code) {
       case 'Enter':
-        if (!musicPlaying) {
-          musicPlaying = true;
-          bgm.loop = true;
-          pauseBtn.classList.remove("hidden");
-          playBtn.classList.add("hidden");
-          bgm.play();
+        if (!gameStart) {
+          if (!musicPlaying) {
+            musicPlaying = true;
+            bgm.loop = true;
+            pauseBtn.classList.remove("hidden");
+            playBtn.classList.add("hidden");
+            bgm.play();
+          }
+          gameStart = true;
+          startGame();
+          break
         }
-        gameStart = true;
-        startGame();
-        break
       default:
         return;
     }
