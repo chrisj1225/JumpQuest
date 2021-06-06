@@ -46,9 +46,9 @@ class Character {
         if (frames < 20) {
           ctx.drawImage(finnLeft, 544, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         } else if (frames > 20 && frames < 40) { 
-          ctx.drawImage(finnLeft, 512, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
-        } else {
           ctx.drawImage(finnLeft, 480, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
+        } else {
+          ctx.drawImage(finnLeft, 448, 0, 32, 20, this.position.x, this.position.y, this.width, this.height);
         };
       } else {
         if (frames < 40) {
