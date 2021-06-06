@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
             bgm.play();
           }
           gameStart = true;
-          startGame();
-          // startAnimating(60)
+          // startGame();
+          startAnimating(240)
           break
         }
       default:
@@ -85,29 +85,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
     
-  // let fps, interval, startTime, now, then, elapsed;
-  // function startAnimating(fps) {
-  //   interval = 1000 / fps;
-  //   then = Date.now();
-  //   startTime = then;
-  //   animate();
-  // }
+  let fps, interval, startTime, now, then, elapsed;
+  function startAnimating(fps) {
+    interval = 1000 / fps;
+    then = Date.now();
+    startTime = then;
+    animate();
+  }
 
-  // function animate() {
-  //   now = Date.now();
-  //   elapsed = now - then;
-  //   if (elapsed > interval) {
-  //     then = now - (elapsed % interval);
-  //     requestAnimationFrame(gameLoop);
-  //   };
+  function animate() {
+    now = Date.now();
+    elapsed = now - then;
+    if (elapsed > interval) {
+      then = now - (elapsed % interval);
+      gameLoop();
+    };
 
+    requestAnimationFrame(animate);
+  }
+
+  // function startGame() {
+  //   gameLoop();
   //   requestAnimationFrame(gameLoop);
   // }
-
-  function startGame() {
-    gameLoop();
-    requestAnimationFrame(gameLoop);
-  }
 
   function gameLoop() {
     ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
@@ -134,7 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
       frames++;
     }
 
-    requestAnimationFrame(gameLoop);
+    // requestAnimationFrame(gameLoop);
+    requestAnimationFrame(animate);
   }
 
   // platform = [posX, posY, width]
