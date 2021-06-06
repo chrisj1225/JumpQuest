@@ -1,6 +1,6 @@
 # Jump Quest
 ## Background & Overview
-* Jump Quest is a 2d side-scrolling game in which the sole purpose of the game is to jump across several platforms, dodge obstacles, and reach the end of the level in order to retrieve a special item & beat the game. There will be moving obstacles throughout the level that will make the quest more difficult. If at any point, the user makes a mistake and falls off of a platform, they will need to continue from where they landed. 
+* Jump Quest is a 2d side-scrolling game in which the sole purpose of the game is to jump across several platforms, dodge obstacles, and reach the end of the level in order to retrieve a special item & beat the game. There will be moving obstacles throughout the level that will make the quest more difficult. If at any point, the user makes a mistake and falls off of a platform, they will need to continue from where they landed. [LIVE](https://chrisj1225.github.io/JumpQuest/)
 
 ![game](./gifs/jumpquest-complete.gif)
 
