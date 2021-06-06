@@ -76,7 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
             bgm.play();
           }
           gameStart = true;
-          startGame();
+          // startGame();
+          startAnimating(60)
           break
         }
       default:
@@ -84,10 +85,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
     
-  function startGame() {
-    gameLoop();
+  let fps, interval, startTime, now, then, elapsed;
+  function startAnimating(fps) {
+    interval = 1000 / fps;
+    then = Date.now();
+    startTime = then;
+    animate();
+  }
+
+  function animate() {
+    now = Date.now();
+    elapsed = now - then;
+    if (elapsed > interval) {
+      then = now - (elapsed % interval);
+      requestAnimationFrame(gameLoop);
+    };
+
     requestAnimationFrame(gameLoop);
   }
+
+  // function startGame() {
+  //   gameLoop();
+  //   requestAnimationFrame(gameLoop);
+  // }
 
   function gameLoop() {
     ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
