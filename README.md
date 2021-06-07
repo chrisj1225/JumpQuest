@@ -12,9 +12,10 @@ In Jump Quest, users will be able to:
   * Left and right to move
   * Down to crouch/duck
 * Jump using the spacebar
+
 In addition, this project will include:
 * Background music that the user can toggle on/off
-* A toggle menu that explains the rules of the game
+* A togglable menu that explains the rules of the game
 * Links to github repository, linkedin profile & other 
 
 ## Wireframes
