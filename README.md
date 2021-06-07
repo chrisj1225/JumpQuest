@@ -53,3 +53,7 @@ In addition, this project will include:
 * Randomized obstacles
 * Incorporate user health bar. Hitting obstacles or falling reduces health points. 
 
+## Credits
+* Finn Pixel [sprites](https://lhteam.itch.io/finn-sprite) by LHTeam
+* Background [music](https://fanlink.to/insecuremusic) by Insecure Music
+
