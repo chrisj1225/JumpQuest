@@ -12,9 +12,10 @@ In Jump Quest, users will be able to:
   * Left and right to move
   * Down to crouch/duck
 * Jump using the spacebar
+
 In addition, this project will include:
 * Background music that the user can toggle on/off
-* A toggle menu that explains the rules of the game
+* A togglable menu that explains the rules of the game
 * Links to github repository, linkedin profile & other 
 
 ## Wireframes
@@ -52,4 +53,8 @@ In addition, this project will include:
 * Upon game start, show the top of the level and pan down to where the user begins the level
 * Randomized obstacles
 * Incorporate user health bar. Hitting obstacles or falling reduces health points. 
+
+## Credits
+* Finn Pixel [sprites](https://lhteam.itch.io/finn-sprite) by LHTeam
+* Background [music](https://fanlink.to/insecuremusic) by Insecure Music
 
