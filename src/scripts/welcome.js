@@ -28,8 +28,8 @@ const welcomeModal = (ctx, gameStart, GAME_WIDTH, GAME_HEIGHT) => {
     ctx.fill();
 
     ctx.font = 'bold 20px arial';
-    ctx.fillText("Game design by Chris Joo", 730, 790);
-    ctx.fillText("Music by INSECURE MUSIC", 20, 790);
+    ctx.fillText("Game design by Chris Joo", 730, 780);
+    ctx.fillText("Music by INSECURE MUSIC", 20, 780);
 
     ctx.fill();
     
