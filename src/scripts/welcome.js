@@ -18,13 +18,16 @@ const welcomeModal = (ctx, gameStart, GAME_WIDTH, GAME_HEIGHT) => {
     ctx.fillText("- Vertically moving balls will knock you off of the platform", 100, 445);
     
     ctx.font = 'bold 30px arial';
-    ctx.fillText("Good luck!!!", 75, 550);
+    ctx.fillText("Good luck!!!", 75, 530);
     
+    ctx.fillStyle = "gold";
     ctx.font = 'bold 20px arial';
-    ctx.fillText("(If your screen height is smaller than 865 pixels, please consider zooming out to 80-90%)", 75, 600);
+    ctx.fillText("**If your screen height is smaller than 865 pixels, please zoom browser out to 80 or 90%**", 75, 600);
+    ctx.fillText("Hold CTRL/CMD and tap the - key to zoom out", 90, 630);
     
+    ctx.fillStyle = "snow";
     ctx.font = 'bold 40px arial';
-    ctx.fillText("Press ENTER to begin!", 275, 700);
+    ctx.fillText("Press ENTER to begin!", 275, 710);
     ctx.fill();
 
     ctx.font = 'bold 20px arial';

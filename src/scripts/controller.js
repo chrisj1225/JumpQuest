@@ -26,6 +26,7 @@ class Controller {
           char.crouch();   
           break;
         case 'Space':
+        case 'KeyW':
           // this.keys[event.code] = true
           if (!char.jumping && !char.falling && !char.colliding) {
             this.jumpSFX.play();
@@ -56,6 +57,7 @@ class Controller {
           char.uncrouch();
           break;
         case 'Space':
+        case 'KeyW':
           // this.keys[event.code] = false;
           break;
       }
