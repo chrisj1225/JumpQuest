@@ -144,26 +144,6 @@ collisionDetection(obstacle) {
 * Canvas for creating user model, platforms and moving obstacles 
 * HTML and CSS for overall game structure & styling
 
-## Implementation Timeline
-* Day 1
-  * Create user movement functionality
-  * Implement game physics (jumping and falling)
-* Day 2
-  * Create platform canvas elements
-  * Implement game logic so that user can only stand on platform.
-  * Add background image
-* Day 3
-  * Start building out level
-  * Create obstacle canvas element
-  * Incorporate moving obstacle & game logic
-* Day 4
-  * Fine tune all game physics, finish all core functionalities.
-  * Add bgm (background music)
-* Day 5 & Onward
-  * Finish building out level (adding platforms and obstacles)
-  * Fix any bugs
-  * Work on bonus features
-
 ## Bonus Features (Potential future features)
 * A portal at the end (top) of the level that transports the user to another map/level
 * Upon game start, show the top of the level and pan down to where the user begins the level
